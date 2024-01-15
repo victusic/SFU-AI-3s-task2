@@ -1,7 +1,7 @@
 import { limit, objectCoordinates, targetCoordinates } from './data'
 import { MoveResult } from './types'
 
-function sortMovesByLength(moves: MoveResult[]): { shortest: MoveResult[]; longest: MoveResult[] } {
+const sortMovesByLength = (moves: MoveResult[]) => {
   const sortedMoves = [...moves].sort((a, b) => a.length - b.length)
 
   const shortestLength = sortedMoves[0].length
@@ -16,12 +16,12 @@ function sortMovesByLength(moves: MoveResult[]): { shortest: MoveResult[]; longe
   }
 }
 
-function moveUntilMatch(
+const moveUntilMatch = (
   objectCoordinates: [number, number],
   targetCoordinates: [number, number][],
   typeCoordinate: number, //x(0) или y(1)
   isForward: boolean,
-): number {
+): number => {
   let iterations = 0
 
   while (!targetCoordinates.some((coord) => coord[0] === objectCoordinates[0] && coord[1] === objectCoordinates[1])) {
@@ -45,11 +45,11 @@ const moves: MoveResult[] = [
 const sortedMoves = sortMovesByLength(moves)
 
 console.log('Самый короткий путь(пути):')
-sortedMoves.shortest.forEach((move) =>
+sortedMoves.shortest.map((move) =>
   console.log(`${move.direction} - шагов: ${move.length === Infinity ? 'бесконечное кол-во' : move.length}`),
 )
 
 console.log('\nСамый длинный путь(пути):')
-sortedMoves.longest.forEach((move) =>
+sortedMoves.longest.map((move) =>
   console.log(`${move.direction} - шагов: ${move.length === Infinity ? 'бесконечное кол-во' : move.length}`),
 )
