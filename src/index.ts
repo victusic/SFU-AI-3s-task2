@@ -45,11 +45,11 @@ const moves: MoveResult[] = [
 const sortedMoves = sortMovesByLength(moves)
 
 console.log('Самый короткий путь(пути):')
-sortedMoves.shortest.forEach((move) =>
+sortedMoves.shortest.map((move) =>
   console.log(`${move.direction} - шагов: ${move.length === Infinity ? 'бесконечное кол-во' : move.length}`),
 )
 
 console.log('\nСамый длинный путь(пути):')
-sortedMoves.longest.forEach((move) =>
+sortedMoves.longest.map((move) =>
   console.log(`${move.direction} - шагов: ${move.length === Infinity ? 'бесконечное кол-во' : move.length}`),
 )
